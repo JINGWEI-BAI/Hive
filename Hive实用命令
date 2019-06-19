@@ -1,0 +1,55 @@
+1.hive模糊搜索表
+
+show tables like '*name*';
+
+2.查看表结构信息
+ 
+desc formatted table_name;
+desc table_name;
+
+3.查看分区信息
+
+show partitions table_name;
+
+4.根据分区查询数据
+
+select table_coulm from table_name where partition_name = '2019-06-16';
+
+5.查看hdfs文件信息
+
+dfs -ls /user/hive/warehouse/table_name;
+
+6.hive修改表名
+
+ALTER TABLE o_h02_click_log_i RENAME TO o_h02_click_log_i_bk;
+
+7.hive复制表结构
+
+CREATE TABLE d_h02_click_log_baitiao_ag_sum LIKE tmp.tmp_h02_click_log_baitiao_ag_sum;
+
+8.hive开启简单模式不启用mr
+
+set hive.fetch.task.conversion=more;
+
+9.杀死某个任务  不在hive shell中执行
+
+hadoop job -kill job_201403041453_58315
+
+10.删除分区
+
+alter table tmp_h02_click_log_morgage drop partition(dt='2019-03-01');
+alter table d_h02_click_log_basic_d_fact drop partition(dt='2019-01-17');
+
+11.查看perl进程
+
+ps -ef|grep perl
+
+15.hive上操作hadoop文件基本命令
+
+查看文件大小
+
+dfs -du /user/jrjt/warehouse/tmp.db/tmp_h02_click_log/dt=2019-06-15;
+    
+删除文件
+
+dfs -rm /user/jrjt/warehouse/tmp.db/tmp_h02_click_log/dt=2019-06-15;
