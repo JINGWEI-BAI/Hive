@@ -1,0 +1,11 @@
+1.执行修复命令
+
+msck repair table test;
+
+2.执行添加分区
+
+alter table test add partition(month='201905', day='02');
+
+3.load数据到分区
+
+load data local inpath '/opt/package/hive/txt/dept.txt' into table test partition(month='201905', day='02');
